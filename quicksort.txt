@@ -1,0 +1,43 @@
+#include<iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int  partition(int arr[],int s,int e){
+
+	int x=arr[s];
+	int i=s+1;
+	for(int j=s+1;j<=e;j++){
+		if(arr[j]<x){
+			swap(arr[i],arr[j]);
+			i++;
+		}
+	}
+	swap(arr[s],arr[i-1]);
+
+	return i-1;
+}
+int randomPivotPartition(int A[], int p, int r)
+{
+    swap(A[r], A[p + rand() % (r - p + 1)]);
+    return partition(A, p, r);
+}
+
+void quicksort(int arr[],int s, int e){
+	if(s<e){
+
+	int m=randomPivotPartition(arr,s,e);
+	quicksort(arr,s,m-1);
+	quicksort(arr,m+1,e);
+}}
+
+int main(){
+ int arr1[9]={2,7,5,3,6,3,6,4,67};
+ int n=9;
+ quicksort(arr1,0,n-1);
+
+ for(int i=0;i<n;i++){
+ 	cout<<arr1[i]<<" ";
+ }
+ 
+}
